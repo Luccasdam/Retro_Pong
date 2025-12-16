@@ -1,0 +1,22 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{6C5AC08C-4AD3-F993-F843-0B988B9F6A4B}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "Retro_Pong",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "ModelingToolsEditorMode",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		}
+	]
+}
