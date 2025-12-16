@@ -14,10 +14,17 @@ APongPaddle::APongPaddle()
 
 	PaddleMesh = CreateDefaultSubobject<UStaticMeshComponent>("PaddleMesh");
 	PaddleMesh->SetupAttachment(BoxCollisionComponent);
+
+	PaddleMovementComponent = CreateDefaultSubobject<UPongPaddleMovementComponent>("PaddleMovementComponent");
 }
 
 
 void APongPaddle::BeginPlay()
 {
 	Super::BeginPlay();
+}
+
+void APongPaddle::AddPaddleMovementInput(EMovementDirection MovementDirection)
+{
+	PaddleMovementComponent->AddMovementInput(MovementDirection);
 }

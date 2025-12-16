@@ -3,10 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PongPaddleMovementComponent.h"
 #include "GameFramework/Pawn.h"
 #include "PongPaddle.generated.h"
 
 class UBoxComponent;
+class UPongPaddleMovementComponent;
 
 
 UENUM(BlueprintType)
@@ -27,12 +29,18 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+	UFUNCTION(BlueprintCallable)
+	void AddPaddleMovementInput(EMovementDirection MovementDirection);
+
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	TObjectPtr<UBoxComponent> BoxCollisionComponent;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	TObjectPtr<UStaticMeshComponent> PaddleMesh;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
+	TObjectPtr<UPongPaddleMovementComponent> PaddleMovementComponent;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Defaults")
 	EPlayer Player = EPlayer::One;
