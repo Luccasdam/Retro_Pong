@@ -8,6 +8,14 @@
 
 class UBoxComponent;
 
+
+UENUM(BlueprintType)
+enum class EPlayer : uint8
+{
+	One,
+	Two
+};
+
 UCLASS()
 class RETRO_PONG_API APongPaddle : public APawn
 {
@@ -25,4 +33,7 @@ protected:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	TObjectPtr<UStaticMeshComponent> PaddleMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Defaults")
+	EPlayer Player = EPlayer::One;
 };
