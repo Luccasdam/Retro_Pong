@@ -39,9 +39,6 @@ void APongBall::BeginPlay()
 	const float MoveUp = FMath::Sin(FMath::DegreesToRadians(Angle));
 	const float MoveRight = FMath::Cos(FMath::DegreesToRadians(Angle)) * Direction;
 	
-	FString DebugMsg = FString::Printf(TEXT("Cos 60 = %f"), FMath::Cos(FMath::DegreesToRadians(60.f)));
-	GEngine->AddOnScreenDebugMessage(1, 30.f, FColor::White, DebugMsg);
-	
 	MovementDirection = FVector(0.f, MoveRight, MoveUp).GetSafeNormal();
 }
 
