@@ -5,18 +5,11 @@
 #include "CoreMinimal.h"
 #include "PongPaddleMovementComponent.h"
 #include "GameFramework/Pawn.h"
+#include "PongStatics.h"
 #include "PongPaddle.generated.h"
 
 class UBoxComponent;
 class UPongPaddleMovementComponent;
-
-
-UENUM(BlueprintType)
-enum class EPlayer : uint8
-{
-	One,
-	Two
-};
 
 UCLASS()
 class RETRO_PONG_API APongPaddle : public APawn
