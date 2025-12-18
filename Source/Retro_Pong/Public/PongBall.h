@@ -53,6 +53,12 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Properties")
 	TObjectPtr<UMaterialInstanceDynamic> DynamicMaterialInstance;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Properties")
+	TObjectPtr<USoundBase> PaddleHitSFX;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Properties")
+	TObjectPtr<USoundBase> WallHitSFX;
+
 private:
 	float Angle;
 	float Direction;

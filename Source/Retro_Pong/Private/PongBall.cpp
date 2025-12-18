@@ -5,6 +5,7 @@
 
 #include "PongPaddle.h"
 #include "Components/SphereComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 
 APongBall::APongBall()
@@ -79,6 +80,13 @@ void APongBall::Tick(float DeltaTime)
 		if (APongPaddle* PongPaddle = Cast<APongPaddle>(Hit.GetActor()))
 		{
 			UpdateColor(PongPaddle->GetColor());
+			ensure(PaddleHitSFX);
+			UGameplayStatics::PlaySound2D(this, PaddleHitSFX);
+		}
+		else
+		{
+			ensure(WallHitSFX);
+			UGameplayStatics::PlaySound2D(this, WallHitSFX);
 		}
 	}
 }
