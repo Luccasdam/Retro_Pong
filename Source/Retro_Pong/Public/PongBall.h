@@ -33,6 +33,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void UpdateColor(FLinearColor InColor);
 
+	UFUNCTION(BlueprintCallable)
+	void UpdateForceDirection(int32 NewDirection);
+
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
@@ -54,5 +57,5 @@ private:
 	float Angle;
 	float Direction;
 	FVector MovementDirection;
-	EPlayer LastHitPlayer;
+	int8 ForceDirection;
 };

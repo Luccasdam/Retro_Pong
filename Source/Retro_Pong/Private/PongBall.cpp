@@ -16,6 +16,7 @@ APongBall::APongBall()
 	MaxAngle = 60.f;
 	Direction = 1;
 	MovementDirection = FVector::ZeroVector;
+	ForceDirection = 0;
 
 	SphereCollisionComponent = CreateDefaultSubobject<USphereComponent>("SphereCollisionComponent");
 	SetRootComponent(SphereCollisionComponent);
@@ -43,8 +44,13 @@ void APongBall::Launch()
 	Angle = FMath::RandRange(-MaxAngle, MaxAngle);
 	Direction = FMath::RandBool() ? 1.f : -1.f;
 
+	if (ForceDirection != 0)
+	{
+		Direction = ForceDirection;
+	}
+
 	const float MoveUp = FMath::Sin(FMath::DegreesToRadians(Angle));
-	const float MoveRight = FMath::Cos(FMath::DegreesToRadians(Angle)) * Direction;
+	const float MoveRight = FMath::Cos(FMath::Abs(FMath::DegreesToRadians(Angle))) * Direction;
 	
 	MovementDirection = FVector(0.f, MoveRight, MoveUp).GetSafeNormal();
 	
@@ -72,7 +78,6 @@ void APongBall::Tick(float DeltaTime)
 
 		if (APongPaddle* PongPaddle = Cast<APongPaddle>(Hit.GetActor()))
 		{
-			LastHitPlayer = PongPaddle->GetPlayer();
 			UpdateColor(PongPaddle->GetColor());
 		}
 	}
@@ -84,5 +89,10 @@ void APongBall::UpdateColor(FLinearColor InColor)
 	{
 		DynamicMaterialInstance->SetVectorParameterValue("Color", InColor);
 	}
+}
+
+void APongBall::UpdateForceDirection(int32 NewDirection)
+{
+	ForceDirection = NewDirection;
 }
 
