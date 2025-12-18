@@ -22,6 +22,11 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+public:
+	EPlayer GetPlayer() const { return Player; }
+	FLinearColor GetColor() const { return Color; }
+
+protected:
 	UFUNCTION(BlueprintCallable)
 	void AddPaddleMovementInput(EMovementDirection MovementDirection);
 
@@ -37,4 +42,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Defaults")
 	EPlayer Player = EPlayer::One;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Defaults")
+	FLinearColor Color;
 };

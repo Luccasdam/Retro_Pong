@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PongStatics.h"
 #include "GameFramework/Actor.h"
 #include "PongBall.generated.h"
 
@@ -29,6 +30,9 @@ protected:
 public:	
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION(BlueprintCallable)
+	void UpdateColor(FLinearColor InColor);
+
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
@@ -43,8 +47,12 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Properties")
 	float MaxAngle;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Properties")
+	TObjectPtr<UMaterialInstanceDynamic> DynamicMaterialInstance;
+
 private:
 	float Angle;
 	float Direction;
 	FVector MovementDirection;
+	EPlayer LastHitPlayer;
 };

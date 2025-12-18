@@ -3,6 +3,7 @@
 
 #include "PongBall.h"
 
+#include "PongPaddle.h"
 #include "Components/SphereComponent.h"
 
 
@@ -68,6 +69,20 @@ void APongBall::Tick(float DeltaTime)
 	{
 		const FVector BounceDirection = MovementDirection - 2 * (FVector::DotProduct(MovementDirection.GetSafeNormal(), Hit.ImpactNormal) * Hit.ImpactNormal);
 		MovementDirection = BounceDirection.GetSafeNormal();
+
+		if (APongPaddle* PongPaddle = Cast<APongPaddle>(Hit.GetActor()))
+		{
+			LastHitPlayer = PongPaddle->GetPlayer();
+			UpdateColor(PongPaddle->GetColor());
+		}
+	}
+}
+
+void APongBall::UpdateColor(FLinearColor InColor)
+{
+	if (DynamicMaterialInstance)
+	{
+		DynamicMaterialInstance->SetVectorParameterValue("Color", InColor);
 	}
 }
 
