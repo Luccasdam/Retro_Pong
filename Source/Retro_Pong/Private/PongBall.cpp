@@ -16,6 +16,7 @@ APongBall::APongBall()
 	Speed = 600.f;
 	MaxAngle = 60.f;
 	Direction = 1;
+	CurrentSpeed = Speed;
 	MovementDirection = FVector::ZeroVector;
 	ForceDirection = 0;
 
@@ -38,6 +39,7 @@ void APongBall::Reset()
 
 	TeleportTo(FVector::ZeroVector, FRotator::ZeroRotator);
 	PrimaryActorTick.SetTickFunctionEnable(false);
+	CurrentSpeed = Speed;
 }
 
 void APongBall::Launch()
@@ -70,7 +72,7 @@ void APongBall::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	FHitResult Hit;
-	AddActorWorldOffset(MovementDirection * Speed * DeltaTime, true, &Hit);
+	AddActorWorldOffset(MovementDirection * CurrentSpeed * DeltaTime, true, &Hit);
 
 	if (IsValid(Hit.GetActor()))
 	{
@@ -82,6 +84,7 @@ void APongBall::Tick(float DeltaTime)
 			UpdateColor(PongPaddle->GetColor());
 			ensure(PaddleHitSFX);
 			UGameplayStatics::PlaySound2D(this, PaddleHitSFX);
+			CurrentSpeed += SpeedIncrease;
 		}
 		else
 		{

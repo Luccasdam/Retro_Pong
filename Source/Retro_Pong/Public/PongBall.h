@@ -48,9 +48,12 @@ protected:
 	float Speed;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Properties")
-	float MaxAngle;
+	float SpeedIncrease;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Properties")
+	float MaxAngle;
+
+	UPROPERTY(BlueprintReadWrite, Category="Properties")
 	TObjectPtr<UMaterialInstanceDynamic> DynamicMaterialInstance;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Properties")
@@ -62,6 +65,7 @@ protected:
 private:
 	float Angle;
 	float Direction;
+	float CurrentSpeed;
 	FVector MovementDirection;
 	int8 ForceDirection;
 };
