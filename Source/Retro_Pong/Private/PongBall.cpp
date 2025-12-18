@@ -96,10 +96,14 @@ void APongBall::Tick(float DeltaTime)
 
 void APongBall::UpdateColor(FLinearColor InColor)
 {
+	Color = InColor;
+	
 	if (DynamicMaterialInstance)
 	{
 		DynamicMaterialInstance->SetVectorParameterValue("Color", InColor);
 	}
+
+	K2_UpdateColor();
 }
 
 void APongBall::UpdateForceDirection(int32 NewDirection)

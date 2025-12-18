@@ -33,6 +33,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void UpdateColor(FLinearColor InColor);
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void K2_UpdateColor();
+
 	UFUNCTION(BlueprintCallable)
 	void UpdateForceDirection(int32 NewDirection);
 
@@ -68,4 +71,7 @@ private:
 	float CurrentSpeed;
 	FVector MovementDirection;
 	int8 ForceDirection;
+
+	UPROPERTY(BlueprintReadOnly, meta=(AllowPrivateAccess))
+	FLinearColor Color;
 };
