@@ -9,6 +9,7 @@
 APongBall::APongBall()
 {
 	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bStartWithTickEnabled = false;
 
 	Speed = 600.f;
 	MaxAngle = 60.f;
@@ -28,11 +29,16 @@ void APongBall::PostInitializeComponents()
 	
 }
 
-
-void APongBall::BeginPlay()
+void APongBall::Reset()
 {
-	Super::BeginPlay();
+	Super::Reset();
 
+	TeleportTo(FVector::ZeroVector, FRotator::ZeroRotator);
+	PrimaryActorTick.SetTickFunctionEnable(false);
+}
+
+void APongBall::Launch()
+{
 	Angle = FMath::RandRange(-MaxAngle, MaxAngle);
 	Direction = FMath::RandBool() ? 1.f : -1.f;
 
@@ -40,6 +46,14 @@ void APongBall::BeginPlay()
 	const float MoveRight = FMath::Cos(FMath::DegreesToRadians(Angle)) * Direction;
 	
 	MovementDirection = FVector(0.f, MoveRight, MoveUp).GetSafeNormal();
+	
+	PrimaryActorTick.SetTickFunctionEnable(true);
+}
+
+
+void APongBall::BeginPlay()
+{
+	Super::BeginPlay();
 }
 
 

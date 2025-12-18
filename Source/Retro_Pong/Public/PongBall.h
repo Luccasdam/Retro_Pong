@@ -8,7 +8,7 @@
 
 class USphereComponent;
 
-UCLASS()
+UCLASS(Abstract)
 class RETRO_PONG_API APongBall : public AActor
 {
 	GENERATED_BODY()
@@ -16,6 +16,12 @@ class RETRO_PONG_API APongBall : public AActor
 public:	
 	APongBall();
 	virtual void PostInitializeComponents() override;
+
+	UFUNCTION(BlueprintCallable)
+	virtual void Reset() override;
+	
+	UFUNCTION(BlueprintCallable)
+	void Launch();
 
 protected:
 	virtual void BeginPlay() override;
