@@ -26,6 +26,9 @@ public:
 	EPlayer GetPlayer() const { return Player; }
 	FLinearColor GetColor() const { return Color; }
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void PlayHitAnimation();
+
 protected:
 	UFUNCTION(BlueprintCallable)
 	void AddPaddleMovementInput(EMovementDirection MovementDirection);

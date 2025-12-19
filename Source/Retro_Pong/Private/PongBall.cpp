@@ -81,6 +81,7 @@ void APongBall::Tick(float DeltaTime)
 
 		if (APongPaddle* PongPaddle = Cast<APongPaddle>(Hit.GetActor()))
 		{
+			PongPaddle->PlayHitAnimation();
 			UpdateColor(PongPaddle->GetColor());
 			ensure(PaddleHitSFX);
 			UGameplayStatics::PlaySound2D(this, PaddleHitSFX);
